@@ -11,7 +11,3 @@ export interface ParseTableOptions {
 export interface ParseTablePositions {
   [key: string]: number,
 }
-
-export interface ParseTableRow {
-  [key: string]: string,
-}

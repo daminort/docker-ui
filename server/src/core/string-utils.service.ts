@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { ParseTableOptions, ParseTablePositions, ParseTableRow } from './interfaces/string-utils.interface';
+import { ParseTableOptions, ParseTablePositions } from './interfaces/string-utils.interface';
 
 @Injectable()
 export class StringUtilsService {
@@ -16,7 +16,7 @@ export class StringUtilsService {
     }, {} as ParseTablePositions);
   }
 
-  async parseTable(input: string, options: ParseTableOptions): Promise<ParseTableRow[]> {
+  async parseTable<T>(input: string, options: ParseTableOptions): Promise<T[]> {
 
     const result = [];
     const lines = input.split('\n');
@@ -30,12 +30,12 @@ export class StringUtilsService {
         return;
       }
 
-      const row: ParseTableRow = {};
+      const row = {} as T;
       let prevPos = 0;
       options.columns.forEach((col, colIndex) => {
         const { name } = col;
         const nextCol = options.columns[colIndex + 1];
-        const nextPos = pos[nextCol.name];
+        const nextPos = nextCol ? pos[nextCol.name] : undefined;
 
         row[name] = line.slice(prevPos, nextPos).trim();
         prevPos = nextPos;

@@ -6,6 +6,7 @@ export const config = {
     isDevelopment: (env.NODE_ENV === 'development'),
   },
   api: {
+    baseURL: `${env.API_URL}/${env.API_VERSION}`,
     url: env.API_URL,
     port: env.API_PORT,
     version: env.API_VERSION,

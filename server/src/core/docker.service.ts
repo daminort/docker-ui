@@ -6,13 +6,19 @@ import { LoggerService } from './logger.service';
 
 const asyncExec = util.promisify(exec);
 
+const commands = {
+  containers: 'docker ps --all --size --no-trunc',
+  images: 'docker images --all --no-trunc',
+  volumes: 'docker volume ls',
+}
+
 @Injectable()
 export class DockerService {
   constructor(private readonly loggerService: LoggerService) {}
 
-  async containersList(): Promise<string> {
+  async executeCommand(command): Promise<string> {
     try {
-      const { stdout, stderr } = await asyncExec('docker ps --all --size --no-trunc');
+      const { stdout, stderr } = await asyncExec(command);
       if (!stderr) {
         return Promise.resolve(stdout);
       }
@@ -22,5 +28,17 @@ export class DockerService {
     } catch (err) {
       return Promise.reject(err);
     }
+  }
+
+  async containersList(): Promise<string> {
+    return this.executeCommand(commands.containers);
+  }
+
+  async imagesList(): Promise<string> {
+    return this.executeCommand(commands.images);
+  }
+
+  async volumesList(): Promise<string> {
+    return this.executeCommand(commands.volumes);
   }
 }
