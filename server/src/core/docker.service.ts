@@ -10,6 +10,12 @@ const commands = {
   containers: 'docker ps --all --size --no-trunc',
   images: 'docker images --all --no-trunc',
   volumes: 'docker volume ls',
+
+  imageHistory: (imageID: string) => `docker history ${imageID} --no-trunc`,
+
+  containerInspect: (containerID: string) => `docker inspect ${containerID}`,
+  imageInspect: (imageID: string) => `docker inspect ${imageID}`,
+  volumeInspect: (volumeName: string) => `docker volume inspect ${volumeName}`,
 }
 
 @Injectable()
@@ -30,6 +36,21 @@ export class DockerService {
     }
   }
 
+  async executeInspectCommand(command): Promise<any> {
+    try {
+      const { stdout, stderr } = await asyncExec(command);
+      if (!stderr) {
+        const res = JSON.parse(stdout);
+        return Promise.resolve(res);
+      }
+
+      return Promise.reject(stdout);
+
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  }
+
   async containersList(): Promise<string> {
     return this.executeCommand(commands.containers);
   }
@@ -40,5 +61,21 @@ export class DockerService {
 
   async volumesList(): Promise<string> {
     return this.executeCommand(commands.volumes);
+  }
+
+  async imageHistory(imageID: string): Promise<string> {
+    return this.executeCommand(commands.imageHistory(imageID));
+  }
+
+  async containerInspect(containerID: string): Promise<any> {
+    return this.executeInspectCommand(commands.containerInspect(containerID));
+  }
+
+  async imageInspect(imageID: string): Promise<any> {
+    return this.executeInspectCommand(commands.imageInspect(imageID));
+  }
+
+  async volumeInspect(volumeName: string): Promise<any> {
+    return this.executeInspectCommand(commands.volumeInspect(volumeName));
   }
 }
