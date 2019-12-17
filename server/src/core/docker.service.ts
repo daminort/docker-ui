@@ -10,6 +10,7 @@ const commands = {
   containers: 'docker ps --all --size --no-trunc',
   images: 'docker images --all --no-trunc',
   volumes: 'docker volume ls',
+  stats: 'docker stats --no-stream --no-trunc',
 
   imageHistory: (imageID: string) => `docker history ${imageID} --no-trunc`,
 
@@ -61,6 +62,10 @@ export class DockerService {
 
   async volumesList(): Promise<string> {
     return this.executeCommand(commands.volumes);
+  }
+
+  async statsList(): Promise<string> {
+    return this.executeCommand(commands.stats);
   }
 
   async imageHistory(imageID: string): Promise<string> {

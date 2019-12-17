@@ -7,8 +7,13 @@ import { DashboardService } from './dashboard.service';
 export class DashboardController {
   constructor(private readonly dashboardService: DashboardService) {}
 
-  @Get()
-  async statsList(): Promise<any> {
-    return this.dashboardService.statsList();
+  @Get('/stats/subscribe')
+  async statsSubscribe(): Promise<boolean> {
+    return this.dashboardService.statsSubscribe();
+  }
+
+  @Get('/stats/unsubscribe')
+  async statsUnsubscribe(): Promise<boolean> {
+    return this.dashboardService.statsUnsubscribe();
   }
 }
