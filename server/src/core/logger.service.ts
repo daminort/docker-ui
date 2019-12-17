@@ -13,6 +13,10 @@ export class LoggerService extends Logger {
     super.log(message, context);
   }
 
+  dockerLog(message: any, context?: string) {
+    this.prefixedLog('Docker', message, context);
+  }
+
   dashboardLog(message: any, context?: string) {
     this.prefixedLog('Dashboard', message, context);
   }

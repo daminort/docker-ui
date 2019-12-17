@@ -1,3 +1,4 @@
+import * as stripColor from 'strip-color';
 import { Injectable } from '@nestjs/common';
 
 import { ParseTableOptions, ParseTablePositions } from './interfaces/string-utils.interface';
@@ -19,7 +20,8 @@ export class StringUtilsService {
   async parseTable<T>(input: string, options: ParseTableOptions): Promise<T[]> {
 
     const result = [];
-    const lines = input.split('\n');
+    const strippedInput = stripColor(input);
+    const lines = strippedInput.split('\n');
     const pos = this.determinePositions(lines[0], options);
     if (!pos) {
       return Promise.resolve([]);

@@ -34,6 +34,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
+    "strip-color": "^0.1.0",
     "swagger-ui-express": "^4.1.2",
     "uuid": "^3.3.3"
   },

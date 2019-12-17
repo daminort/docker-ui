@@ -1,5 +1,5 @@
 import * as util from 'util';
-import { exec } from 'child_process';
+import { exec, spawn, ChildProcess } from 'child_process';
 import { Injectable } from '@nestjs/common';
 
 import { LoggerService } from './logger.service';
@@ -82,5 +82,24 @@ export class DockerService {
 
   async volumeInspect(volumeName: string): Promise<any> {
     return this.executeInspectCommand(commands.volumeInspect(volumeName));
+  }
+
+  async spawnContainerLogs(containerID: string, onDataCallback: (data: Buffer) => void): Promise<ChildProcess> {
+
+    const cid = containerID.slice(0, 12);
+    const process = spawn('docker', ['logs', '--follow', containerID]);
+
+    process.stdout.on('data', onDataCallback);
+    process.stderr.on('data', onDataCallback);
+
+    process.on('close', code => {
+      this.loggerService.dockerLog(`Logs process has been closed for container ${cid} with code ${code}`);
+    });
+
+    process.on('exit', code => {
+      this.loggerService.dockerLog(`Logs process is exited for container ${cid} with code ${code}`);
+    });
+
+    return Promise.resolve(process);
   }
 }

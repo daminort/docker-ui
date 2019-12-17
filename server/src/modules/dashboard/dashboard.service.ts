@@ -1,4 +1,7 @@
 import Timeout = NodeJS.Timeout;
+
+import * as stripColor from 'strip-color';
+import { ChildProcess, spawn } from 'child_process';
 import { Injectable } from '@nestjs/common';
 
 import { DockerService } from '../../core/docker.service';
@@ -9,12 +12,14 @@ import { SocketGateway } from '../../core/socket.gateway';
 import { SocketEventsEnum } from '../../common/enum/socket.enum';
 
 import { StatsDto } from './dto/stats.dto';
+import { LogsDto } from './dto/logs.dto';
 
 @Injectable()
 export class DashboardService {
 
   private statsInterval: Timeout = null;
   private statsDelay = 5000;
+  private logProcesses: Map<string, ChildProcess> = new Map();
 
   private readonly parseStatsOptions: ParseTableOptions = {
     columns: [
@@ -42,9 +47,9 @@ export class DashboardService {
       this.loggerService.dashboardLog('Current stats interval is cleared before new subscribing');
     }
 
-    await this.getStats();
+    await this.sendStats();
     this.statsInterval = setInterval(async () => {
-      await this.getStats();
+      await this.sendStats();
     }, this.statsDelay);
 
     this.loggerService.dashboardLog('It has subscribed successfully');
@@ -61,12 +66,60 @@ export class DashboardService {
     return Promise.resolve(true);
   }
 
-  async getStats(): Promise<void> {
+  async sendStats(): Promise<void> {
     const list = await this.dockerService.statsList();
     const table: StatsDto[] = await this.stringUtilsService.parseTable<StatsDto>(list, this.parseStatsOptions);
 
     await this.socketGateway.sendToAll(SocketEventsEnum.dashboardStats, table);
 
+    return Promise.resolve();
+  }
+
+  async logsSubscribe(containerID: string): Promise<boolean> {
+
+    const cid = containerID.slice(0, 12);
+    const existedProcess = this.logProcesses.get(containerID);
+    if (existedProcess) {
+      existedProcess.kill();
+      this.loggerService.dashboardLog(`Killed existed logs process for container ${cid} before creating the new one`);
+    }
+
+    const onDataCallback = (data: Buffer) => {
+      this.sendLogs(containerID, data);
+    }
+    const process = await this.dockerService.spawnContainerLogs(containerID, onDataCallback);
+
+    this.logProcesses.set(containerID, process);
+    this.loggerService.dashboardLog(`Subscribed to logs for container ${cid}`);
+
+    return Promise.resolve(true);
+  }
+
+  async logsUnsubscribe(containerID: string): Promise<boolean> {
+
+    const cid = containerID.slice(0, 12);
+    const existedProcess = this.logProcesses.get(containerID);
+    if (existedProcess) {
+      existedProcess.kill();
+      this.loggerService.dashboardLog(`Killed existed logs process for container ${cid} before unsubscribing`);
+    }
+
+    this.logProcesses.set(containerID, null);
+
+    this.loggerService.dashboardLog(`Unsubscribed from logs of container ${cid}`);
+    return Promise.resolve(true);
+  }
+
+  async sendLogs(containerID: string, buffer: Buffer): Promise<void> {
+    const logsData = stripColor(buffer.toString());
+    const logs = logsData.split('\n');
+
+    const payload: LogsDto = {
+      containerID,
+      logs,
+    }
+
+    await this.socketGateway.sendToAll(SocketEventsEnum.dashboardLogs, payload);
     return Promise.resolve();
   }
 }

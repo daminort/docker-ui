@@ -1,3 +1,4 @@
 export enum SocketEventsEnum {
-  dashboardStats= 'dashboard:stats',
+  dashboardStats = 'dashboard:stats',
+  dashboardLogs = 'dashboard:logs',
 }
