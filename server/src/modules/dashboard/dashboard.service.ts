@@ -1,7 +1,6 @@
 import Timeout = NodeJS.Timeout;
 
-import * as stripColor from 'strip-color';
-import { ChildProcess, spawn } from 'child_process';
+import { ChildProcess } from 'child_process';
 import { Injectable } from '@nestjs/common';
 
 import { DockerService } from '../../core/docker.service';
@@ -41,6 +40,8 @@ export class DashboardService {
     private readonly socketGateway: SocketGateway,
   ) {}
 
+  // Stats ------------------------------------------------------------------------------------------------------------
+
   async statsSubscribe(): Promise<boolean> {
     if (this.statsInterval) {
       clearInterval(this.statsInterval);
@@ -74,6 +75,8 @@ export class DashboardService {
 
     return Promise.resolve();
   }
+
+  // Logs -------------------------------------------------------------------------------------------------------------
 
   async logsSubscribe(containerID: string): Promise<boolean> {
 
@@ -111,7 +114,7 @@ export class DashboardService {
   }
 
   async sendLogs(containerID: string, buffer: Buffer): Promise<void> {
-    const logsData = stripColor(buffer.toString());
+    const logsData = buffer.toString();
     const logs = logsData.split('\n');
 
     const payload: LogsDto = {
