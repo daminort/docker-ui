@@ -1,3 +1,43 @@
-.root {
-  color: red;
+@import '../../index.less';
+
+.main-root {
+  width: 100%;
+  height: 100vh;
+
+  .main-navbar {
+    height: auto;
+  }
+
+  .main-content {
+    flex: auto;
+    padding: 8px 16px;
+
+    .resizable {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      overflow: hidden;
+
+      .left {
+        padding: 8px 16px 8px 0px;
+      }
+
+      .right {
+        width: 100%;
+        minWidth: 1px;
+        padding: 8px 16px;
+        border-left: 1px solid @nav-bar-default-bg;
+
+        .rs-nav {
+          .rs-nav-item {
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+  }
+
+  .main-footer {
+    height: auto;
+  }
 }

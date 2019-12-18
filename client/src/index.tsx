@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './containers/App/App';
 
 import * as serviceWorker from './serviceWorker';
-import 'rsuite/dist/styles/rsuite-dark.css';
+import './index.less';
 
 ReactDOM.render(
   <App />,
