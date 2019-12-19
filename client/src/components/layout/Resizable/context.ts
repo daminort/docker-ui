@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { ResizableTypesEnum, ResizableContext } from './Resizable.interface';
+import { ResizableTypesEnum, ResizableContext } from './Resizable.types';
 
 const defaultContext: ResizableContext = {
   type: ResizableTypesEnum.horizontal,

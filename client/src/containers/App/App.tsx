@@ -2,11 +2,11 @@ import React from 'react';
 import { Container, Content, Footer as LibFooter, Header, Icon, Nav, Panel, PanelGroup } from 'rsuite';
 
 import { Resizable, Panel as ResizablePanel } from '../../components/layout/Resizable';
-import { Navbar } from '../Navbar';
-import { Footer } from '../Footer';
+import { Navbar } from '../../components/layout/Navbar';
+import { Footer } from '../../components/layout/Footer';
 
 import './App.less';
-import { ResizableTypesEnum } from '../../components/layout/Resizable/Resizable.interface';
+import { ResizableTypesEnum } from '../../components/layout/Resizable/Resizable.types';
 
 const { Item: NavItem } = Nav;
 
