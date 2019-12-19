@@ -1,0 +1,19 @@
+@import '../../../index.less';
+
+.resizable-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+
+  .resizable-panel-active {
+    padding: 0px 8px 0px 0px;
+  }
+
+  .resizable-panel-inactive {
+    width: 100%;
+    minWidth: 1px;
+    padding: 0px 0px 0px 8px;
+    border-left: 1px solid @nav-bar-default-bg;
+  }
+}
