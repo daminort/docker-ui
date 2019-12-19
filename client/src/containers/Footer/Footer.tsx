@@ -3,7 +3,7 @@ import { Navbar as LibNavbar, Nav } from 'rsuite';
 
 import './Footer.less';
 
-const { Header, Body } = LibNavbar;
+const { Header } = LibNavbar;
 const { Item: NavItem } = Nav;
 
 const Footer: React.FC = () => {

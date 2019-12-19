@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Container,
   Header,
   Content,
@@ -14,6 +13,7 @@ import { Resizable } from 're-resizable';
 
 import { Navbar } from '../Navbar';
 import { Footer } from '../Footer';
+
 import './App.less';
 
 const { Item: NavItem } = Nav;
@@ -37,6 +37,7 @@ const App: React.FC = () => {
         <Navbar />
       </Header>
       <Content className="main-content">
+
         <div className="resizable">
           <Resizable
             defaultSize={defaultLeftSize}

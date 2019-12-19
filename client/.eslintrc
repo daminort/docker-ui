@@ -4,7 +4,7 @@
     "node": true,
     "browser": true
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module"
   },
@@ -138,5 +138,13 @@
 
     "react/no-array-index-key":"warn",
     "react/button-has-type":"warn"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "react/prop-types": "off"
+      }
+    }
+  ]
 }
