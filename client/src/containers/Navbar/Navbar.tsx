@@ -17,9 +17,16 @@ const Navbar: React.FC = () => {
       </Header>
       <Body>
         <Nav pullRight>
-          <a href="https://github.com/daminort/docker-ui" target="_blank" rel="noopener noreferrer">
-            <NavItem icon={<Icon icon="github" />}>Github</NavItem>
-          </a>
+          {/*<a href="https://github.com/daminort/docker-ui" target="_blank" rel="noopener noreferrer">*/}
+            <NavItem
+              icon={<Icon icon="github" />}
+              href="https://github.com/daminort/docker-ui"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+            </NavItem>
+          {/*</a>*/}
         </Nav>
       </Body>
     </LibNavbar>

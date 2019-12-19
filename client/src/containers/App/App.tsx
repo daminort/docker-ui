@@ -1,27 +1,14 @@
 import React from 'react';
-import {
-  Container,
-  Header,
-  Content,
-  Footer as LibFooter,
-  Panel,
-  PanelGroup,
-  Nav,
-  Icon,
-} from 'rsuite';
-import { Resizable } from 're-resizable';
+import { Container, Content, Footer as LibFooter, Header, Icon, Nav, Panel, PanelGroup } from 'rsuite';
 
+import { Resizable, Panel as ResizablePanel } from '../../components/layout/Resizable';
 import { Navbar } from '../Navbar';
 import { Footer } from '../Footer';
 
 import './App.less';
+import { ResizableTypesEnum } from '../../components/layout/Resizable/Resizable.interface';
 
 const { Item: NavItem } = Nav;
-
-const defaultLeftSize = {
-  width: '25%',
-  height: '100%',
-};
 
 const icons = {
   stats: <Icon icon="bar-chart" />,
@@ -37,36 +24,29 @@ const App: React.FC = () => {
         <Navbar />
       </Header>
       <Content className="main-content">
-
-        <div className="resizable">
-          <Resizable
-            defaultSize={defaultLeftSize}
-            maxWidth="100%"
-            minWidth="1"
-          >
-            <div className="left">
-              <PanelGroup accordion>
-                <Panel header="Containers" defaultExpanded>
-                  Some containers...
-                </Panel>
-                <Panel header="Images">
-                  Some images...
-                </Panel>
-                <Panel header="Volumes">
-                  Some volumes...
-                </Panel>
-              </PanelGroup>
-            </div>
-          </Resizable>
-          <div className="right">
+        <Resizable type={ResizableTypesEnum.horizontal}>
+          <ResizablePanel resizable>
+            <PanelGroup accordion>
+              <Panel header="Containers" defaultExpanded>
+                Some containers...
+              </Panel>
+              <Panel header="Images">
+                Some images...
+              </Panel>
+              <Panel header="Volumes">
+                Some volumes...
+              </Panel>
+            </PanelGroup>
+          </ResizablePanel>
+          <ResizablePanel>
             <Nav>
-              <NavItem eventKey="stats" icon={icons.stats}>stats</NavItem>
-              <NavItem eventKey="logs" icon={icons.logs}>logs</NavItem>
-              <NavItem eventKey="info" icon={icons.info}>info</NavItem>
-              <NavItem eventKey="raw" icon={icons.raw}>raw</NavItem>
+              <NavItem eventKey="stats" icon={icons.stats}>Stats</NavItem>
+              <NavItem eventKey="logs" icon={icons.logs}>Logs</NavItem>
+              <NavItem eventKey="info" icon={icons.info}>Info</NavItem>
+              <NavItem eventKey="raw" icon={icons.raw}>Raw</NavItem>
             </Nav>
-          </div>
-        </div>
+          </ResizablePanel>
+        </Resizable>
       </Content>
       <LibFooter className="main-footer">
         <Footer />
