@@ -1,3 +1,4 @@
+import { ActionUnion, createAction } from '../commonTypes';
 import {
   ContainersActionTypes,
   ContainerRecord,
@@ -5,24 +6,13 @@ import {
 } from './types';
 
 export const containersActions = {
-  listReload: () => ({
-    type: ContainersActionTypes.listReload,
-    payload: {},
-  } as const),
-  listRefresh: (list: ContainerRecord[]) => ({
-    type: ContainersActionTypes.listRefresh,
-    payload: {
-      list,
-    },
-  } as const),
-  uiMerge: (ui: ContainersUI) => ({
-    type: ContainersActionTypes.uiMerge,
-    payload: {
-      ui,
-    },
-  } as const),
+  listReload: () => createAction(ContainersActionTypes.listReload),
+  listRefresh: (list: ContainerRecord[]) => createAction(ContainersActionTypes.listRefresh, {
+    list,
+  }),
+  uiMerge: (ui: ContainersUI) => createAction(ContainersActionTypes.uiMerge, {
+    ui,
+  }),
 };
 
-type InferActionTypes<T> = T extends { [key: string]: infer U } ? U : never;
-
-export type ContainersActions = ReturnType<InferActionTypes<typeof containersActions>>;
+export type ContainersActions = ActionUnion<typeof containersActions>;
