@@ -15,22 +15,30 @@ export function containersReducer(state: ContainersState, action: ContainersActi
   const { type, payload } = action;
   switch (type) {
     case ContainersActionTypes.listRefresh: {
-      return {
-        ...state,
-        list: payload.list,
-      };
+      if ('list' in payload) {
+        return {
+          ...state,
+          list: payload.list,
+        };
+      }
+      break;
     }
     case ContainersActionTypes.uiMerge: {
-      return {
-        ...state,
-        ui: {
-          ...state.ui,
-          ...payload.ui,
-        },
-      };
+      if ('ui' in payload) {
+        return {
+          ...state,
+          ui: {
+            ...state.ui,
+            ...payload.ui,
+          },
+        };
+      }
+      break;
     }
     default: {
       return state;
     }
-  }
+  };
+
+  return state;
 }
