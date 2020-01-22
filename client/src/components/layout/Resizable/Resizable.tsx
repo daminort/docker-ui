@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ResizableProps, ResizableDefaultProps } from './Resizable.interface';
+import { ResizableProps, ResizableDefaultProps } from './Resizable.types';
 import { Provider } from './context';
 import './Resizable.less';
 

@@ -8,7 +8,7 @@ import {
   ResizablePanelDefaultProps,
   ResizableTypesEnum,
   ResizableContext,
-} from './Resizable.interface';
+} from './Resizable.types';
 import './Resizable.less';
 
 const Panel: React.FC<ResizablePanelProps> = (props) => {

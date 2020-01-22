@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Content, Footer as LibFooter, Header, Icon, Nav, Panel, PanelGroup } from 'rsuite';
+import { useDispatch } from 'react-redux';
+
+import { containersActions } from '../../redux/containers/actions';
 
 import { Resizable, Panel as ResizablePanel } from '../../components/layout/Resizable';
-import { Navbar } from '../Navbar';
-import { Footer } from '../Footer';
+import { Navbar } from '../../components/layout/Navbar';
+import { Footer } from '../../components/layout/Footer';
+import { ResizableTypesEnum } from '../../components/layout/Resizable/Resizable.types';
 
 import './App.less';
-import { ResizableTypesEnum } from '../../components/layout/Resizable/Resizable.interface';
 
 const { Item: NavItem } = Nav;
 
@@ -18,6 +21,13 @@ const icons = {
 };
 
 const App: React.FC = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(containersActions.listReload());
+  }, [dispatch]);
+
   return (
     <Container className="main-root">
       <Header className="main-navbar">
