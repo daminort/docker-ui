@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Container, Content, Footer as LibFooter, Header, Icon, Nav, Panel, PanelGroup } from 'rsuite';
-import { useDispatch } from 'react-redux';
-
-import { containersActions } from '../../redux/containers/actions';
 
 import { Resizable, Panel as ResizablePanel } from '../../components/layout/Resizable';
 import { Navbar } from '../../components/layout/Navbar';
 import { Footer } from '../../components/layout/Footer';
 import { ResizableTypesEnum } from '../../components/layout/Resizable/Resizable.types';
+
+import { ContainersList } from '../ContainersList';
 
 import './App.less';
 
@@ -21,13 +20,6 @@ const icons = {
 };
 
 const App: React.FC = () => {
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(containersActions.listReload());
-  }, [dispatch]);
-
   return (
     <Container className="main-root">
       <Header className="main-navbar">
@@ -38,7 +30,7 @@ const App: React.FC = () => {
           <ResizablePanel resizable>
             <PanelGroup accordion>
               <Panel header="Containers" defaultExpanded>
-                Some containers...
+                <ContainersList />
               </Panel>
               <Panel header="Images">
                 Some images...
