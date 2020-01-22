@@ -11,7 +11,7 @@ const initState: ContainersState = {
   },
 };
 
-export function containersReducer(state: ContainersState, action: ContainersActions): ContainersState {
+export function containersReducer(state: ContainersState = initState, action: ContainersActions): ContainersState {
   const { type, payload } = action;
   switch (type) {
     case ContainersActionTypes.listRefresh: {
