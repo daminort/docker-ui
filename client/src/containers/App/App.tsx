@@ -7,6 +7,7 @@ import { Footer } from '../../components/layout/Footer';
 import { ResizableTypesEnum } from '../../components/layout/Resizable/Resizable.types';
 
 import { ContainersList } from '../ContainersList';
+import { ImagesList } from '../ImagesList';
 
 import './App.less';
 
@@ -33,7 +34,7 @@ const App: React.FC = () => {
                 <ContainersList />
               </Panel>
               <Panel header="Images">
-                Some images...
+                <ImagesList />
               </Panel>
               <Panel header="Volumes">
                 Some volumes...

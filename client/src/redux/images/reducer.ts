@@ -1,17 +1,17 @@
-import { ContainersActionTypes, ContainersState } from './types';
-import { ContainersActions } from './actions';
+import { ImagesActionTypes, ImagesState } from './types';
+import { ImagesActions } from './actions';
 
-const initState: ContainersState = {
+const initState: ImagesState = {
   list: [],
   ui: {
     loading: false,
   },
 };
 
-export function containersReducer(state: ContainersState = initState, action: ContainersActions): ContainersState {
+export function imagesReducer(state: ImagesState = initState, action: ImagesActions): ImagesState {
   const { type, payload } = action;
   switch (type) {
-    case ContainersActionTypes.listRefresh: {
+    case ImagesActionTypes.listRefresh: {
       if ('list' in payload) {
         return {
           ...state,
@@ -20,7 +20,7 @@ export function containersReducer(state: ContainersState = initState, action: Co
       }
       break;
     }
-    case ContainersActionTypes.uiMerge: {
+    case ImagesActionTypes.uiMerge: {
       if ('ui' in payload) {
         return {
           ...state,
