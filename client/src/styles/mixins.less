@@ -1,0 +1,24 @@
+@import './root.less';
+
+// styled Scrollbar for containers
+.scrolled-box {
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: @table-scrollbar-background;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: @table-scrollbar-handle-background;
+  }
+
+  scrollbar-width: 2px;
+  scrollbar-color: @table-scrollbar-handle-background @table-scrollbar-background;
+}
+
+// clipped text with ellipses
+.clip {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -6,7 +6,7 @@ import App from './containers/App/App';
 import { store } from './redux/store';
 
 import * as serviceWorker from './serviceWorker';
-import './index.less';
+import './styles/index.less';
 
 ReactDOM.render(
   <Provider store={store}>
