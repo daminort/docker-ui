@@ -8,6 +8,7 @@ import { ResizableTypesEnum } from '../../components/layout/Resizable/Resizable.
 
 import { ContainersList } from '../ContainersList';
 import { ImagesList } from '../ImagesList';
+import { VolumesList } from '../VolumesList';
 
 import './App.less';
 
@@ -37,7 +38,7 @@ const App: React.FC = () => {
                 <ImagesList />
               </Panel>
               <Panel header="Volumes">
-                Some volumes...
+                <VolumesList />
               </Panel>
             </PanelGroup>
           </ResizablePanel>
