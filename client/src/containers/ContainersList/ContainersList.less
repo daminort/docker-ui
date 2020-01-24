@@ -2,4 +2,20 @@
 
 .list {
   .scrollable-list();
+
+  .container-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .status-indicator {
+      margin-right: 8px;
+    }
+    .name {
+      flex-grow: 1;
+    }
+    .size {
+      color: @B300;
+    }
+  }
 }

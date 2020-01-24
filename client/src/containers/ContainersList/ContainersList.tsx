@@ -5,6 +5,8 @@ import { List } from 'rsuite';
 import { selectList } from '../../redux/containers/selectors';
 import { containersActions } from '../../redux/containers/actions';
 
+import { StatusIndicator } from '../../components/ui/StatusIndicator';
+
 import './ContainersList.less';
 
 const ContainersList = () => {
@@ -19,7 +21,11 @@ const ContainersList = () => {
   const items = list.map((item, index) => {
     return (
       <List.Item key={item.containerID} index={index}>
-        {item.name || item.shortID}
+        <div className="container-row">
+          <StatusIndicator status={item.status} />
+          <div className="name">{item.name || item.shortID}</div>
+          <div className="size">{item.size}</div>
+        </div>
       </List.Item>
     );
   });
