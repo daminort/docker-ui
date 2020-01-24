@@ -35,7 +35,7 @@ export function containersReducer(state: ContainersState = initState, action: Co
     default: {
       return state;
     }
-  };
+  }
 
   return state;
 }

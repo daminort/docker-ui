@@ -35,7 +35,7 @@ export function volumesReducer(state: VolumesState = initState, action: VolumesA
     default: {
       return state;
     }
-  };
+  }
 
   return state;
 }

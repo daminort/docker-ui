@@ -35,7 +35,7 @@ export function imagesReducer(state: ImagesState = initState, action: ImagesActi
     default: {
       return state;
     }
-  };
+  }
 
   return state;
 }

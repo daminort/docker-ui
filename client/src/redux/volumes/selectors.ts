@@ -14,3 +14,8 @@ export const selectUI = createSelector(
   [ui],
   (ui) => ui,
 );
+
+export const selectCount = createSelector(
+  [selectList],
+  (list) => list.length,
+);
