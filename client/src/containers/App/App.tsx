@@ -1,14 +1,12 @@
 import React from 'react';
-import { Container, Content, Footer as LibFooter, Header, Icon, Nav, Panel, PanelGroup } from 'rsuite';
+import { Container, Content, Footer as LibFooter, Header, Icon, Nav } from 'rsuite';
 
-import { Resizable, Panel as ResizablePanel } from '../../components/layout/Resizable';
+import { Resizable, Panel } from '../../components/layout/Resizable';
 import { Navbar } from '../../components/layout/Navbar';
 import { Footer } from '../../components/layout/Footer';
 import { ResizableTypesEnum } from '../../components/layout/Resizable/Resizable.types';
 
-import { ContainersList } from '../ContainersList';
-import { ImagesList } from '../ImagesList';
-import { VolumesList } from '../VolumesList';
+import { Sidebar } from '../Sidebar/Sidebar';
 
 import './App.less';
 
@@ -29,27 +27,17 @@ const App: React.FC = () => {
       </Header>
       <Content className="main-content">
         <Resizable type={ResizableTypesEnum.horizontal}>
-          <ResizablePanel resizable>
-            <PanelGroup accordion>
-              <Panel header="Containers" defaultExpanded>
-                <ContainersList />
-              </Panel>
-              <Panel header="Images">
-                <ImagesList />
-              </Panel>
-              <Panel header="Volumes">
-                <VolumesList />
-              </Panel>
-            </PanelGroup>
-          </ResizablePanel>
-          <ResizablePanel>
+          <Panel resizable>
+            <Sidebar />
+          </Panel>
+          <Panel>
             <Nav>
               <NavItem eventKey="stats" icon={icons.stats}>Stats</NavItem>
               <NavItem eventKey="logs" icon={icons.logs}>Logs</NavItem>
               <NavItem eventKey="info" icon={icons.info}>Info</NavItem>
               <NavItem eventKey="raw" icon={icons.raw}>Raw</NavItem>
             </Nav>
-          </ResizablePanel>
+          </Panel>
         </Resizable>
       </Content>
       <LibFooter className="main-footer">
