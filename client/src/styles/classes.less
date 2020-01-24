@@ -1,8 +1,8 @@
 @import './mixins.less';
 
-.scrollable-list(@maxHeight) {
+.scrollable-list {
   .scrolled-box();
-  max-height: @maxHeight;
+  max-height: calc((100vh - 345px) / 3);
 
   &.rs-list {
     box-shadow: none;
