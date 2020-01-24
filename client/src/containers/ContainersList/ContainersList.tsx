@@ -19,7 +19,7 @@ const ContainersList = () => {
   const items = list.map((item, index) => {
     return (
       <List.Item key={item.containerID} index={index}>
-        {item.name || item.containerID}
+        {item.name || item.shortID}
       </List.Item>
     );
   });

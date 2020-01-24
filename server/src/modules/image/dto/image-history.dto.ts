@@ -5,6 +5,7 @@ export class ImageHistoryDto {
   readonly command: string;
   readonly size: string;
   readonly comment: string;
+  readonly shortID: string;
 }
 
 export class ImageHistoryResponseDto {

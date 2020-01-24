@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { Panel, PanelGroup } from 'rsuite';
 
@@ -14,9 +14,15 @@ import { VolumesList } from '../VolumesList';
 
 const Sidebar: React.FC = () => {
 
+  const [activeKey, setActiveKey] = useState('containers');
+
   const containersCount = useSelector(selectContainersCount);
   const imagesCount = useSelector(selectImagesCount);
   const volumesCount = useSelector(selectVolumesCount);
+
+  const onSelect = useCallback((eventKey) => {
+    setActiveKey(eventKey);
+  }, [setActiveKey]);
 
   const headers = {
     containers: <PanelHeader showBadge title="Containers" count={containersCount} />,
@@ -25,14 +31,14 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <PanelGroup accordion>
-      <Panel header={headers.containers} defaultExpanded>
+    <PanelGroup accordion activeKey={activeKey} onSelect={onSelect}>
+      <Panel header={headers.containers} eventKey="containers">
         <ContainersList />
       </Panel>
-      <Panel header={headers.images}>
+      <Panel header={headers.images} eventKey="images">
         <ImagesList />
       </Panel>
-      <Panel header={headers.volumes}>
+      <Panel header={headers.volumes} eventKey="volumes">
         <VolumesList />
       </Panel>
     </PanelGroup>

@@ -5,11 +5,12 @@ export enum ImagesActionTypes {
 }
 
 export interface ImageRecord {
-  repository: string,
-  tag: string,
-  imageID: string,
-  created: string,
-  size: string,
+  repository: string;
+  tag: string;
+  imageID: string;
+  created: string;
+  size: string;
+  shortID: string;
 }
 
 export interface ImagesUI {

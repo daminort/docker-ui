@@ -19,7 +19,7 @@ const VolumesList = () => {
   const items = list.map((item, index) => {
     return (
       <List.Item key={item.volumeName} index={index}>
-        {item.volumeName}
+        {item.shortName}
       </List.Item>
     );
   });
