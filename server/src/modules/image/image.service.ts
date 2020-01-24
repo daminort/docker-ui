@@ -5,6 +5,9 @@ import { StringUtilsService } from '../../core/string-utils.service';
 import { ParseTableOptions } from '../../core/interfaces/string-utils.interface';
 import { ImageDto } from '../image/dto/image.dto';
 import { ImageHistoryDto, ImageHistoryResponseDto } from '../image/dto/image-history.dto';
+import {
+  StringTransformTypes as Transform
+} from '../../common/enum/string-transform-types.enum';
 
 @Injectable()
 export class ImageService {
@@ -17,6 +20,9 @@ export class ImageService {
       { name: 'created', value: 'CREATED' },
       { name: 'size', value: 'SIZE' },
     ],
+    transforms: [
+      { type: Transform.shortID, columnName: 'imageID', resultName: 'shortID' },
+    ],
   };
 
   private readonly parseImageHistoryOptions: ParseTableOptions = {
@@ -26,6 +32,9 @@ export class ImageService {
       { name: 'command', value: 'CREATED BY' },
       { name: 'size', value: 'SIZE' },
       { name: 'comment', value: 'COMMENT' },
+    ],
+    transforms: [
+      { type: Transform.shortID, columnName: 'imageID', resultName: 'shortID' },
     ],
   };
 
@@ -45,19 +54,21 @@ export class ImageService {
     const list: string = await this.dockerService.imageHistory(imageID);
     const table: ImageHistoryDto[] = await this.stringUtilsService.parseTable<ImageHistoryDto>(list, this.parseImageHistoryOptions);
 
-    const result: ImageHistoryResponseDto = {
-      imageID,
-      history: table.map(row => {
+    const history = table.map(row => {
         const { command } = row;
         if (!row) {
           return '';
         }
 
         return command
-        .replace('/bin/sh -c #(nop)', '')
-        .replace('/bin/sh -c', '')
-        .trim();
-      }).reverse(),
+          .replace('/bin/sh -c #(nop)', '')
+          .replace('/bin/sh -c', '')
+          .trim();
+      }).reverse();
+
+    const result: ImageHistoryResponseDto = {
+      imageID,
+      history,
     };
 
     return Promise.resolve(result);

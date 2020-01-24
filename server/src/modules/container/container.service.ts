@@ -4,6 +4,9 @@ import { DockerService } from '../../core/docker.service';
 import { ContainerDto } from '../container/dto/container.dto';
 import { StringUtilsService } from '../../core/string-utils.service';
 import { ParseTableOptions } from '../../core/interfaces/string-utils.interface';
+import {
+  StringTransformTypes as Transform
+} from '../../common/enum/string-transform-types.enum';
 
 @Injectable()
 export class ContainerService {
@@ -18,6 +21,10 @@ export class ContainerService {
       { name: 'ports', value: 'PORTS' },
       { name: 'name', value: 'NAMES' },
       { name: 'size', value: 'SIZE' },
+    ],
+    transforms: [
+      { type: Transform.shortID, columnName: 'containerID', resultName: 'shortID' },
+      { type: Transform.shortID, columnName: 'imageID', resultName: 'shortImageID' },
     ],
   };
 

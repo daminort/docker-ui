@@ -8,4 +8,6 @@ export class ContainerDto {
   readonly ports: string;
   readonly name: string;
   readonly size: string;
+  readonly shortID: string;
+  readonly shortImageID: string;
 }

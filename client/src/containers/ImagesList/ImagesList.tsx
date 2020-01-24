@@ -17,12 +17,13 @@ const ImagesList = () => {
   }, [dispatch]);
 
   const items = list.map((item, index) => {
+    const key = `${item.imageID}/${item.repository}:${item.tag}`;
     const name = (item.repository !== '<none>')
       ? item.repository
-      : item.imageID.replace('sha256:', '');
+      : item.shortID;
 
     return (
-      <List.Item key={item.imageID} index={index}>
+      <List.Item key={key} index={index}>
         {name}
       </List.Item>
     );

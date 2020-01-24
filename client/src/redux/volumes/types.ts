@@ -5,8 +5,9 @@ export enum VolumesActionTypes {
 }
 
 export interface VolumeRecord {
-  driver: string,
-  volumeName: string,
+  driver: string;
+  volumeName: string;
+  shortName: string;
 }
 
 export interface VolumesUI {

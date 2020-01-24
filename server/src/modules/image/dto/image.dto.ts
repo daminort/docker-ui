@@ -5,4 +5,6 @@ export class ImageDto {
   readonly tag: string;
   readonly created: string;
   readonly size: string;
+
+  readonly shortID: string;
 }

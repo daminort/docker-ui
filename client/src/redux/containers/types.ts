@@ -13,6 +13,8 @@ export interface ContainerRecord {
   ports: string;
   name: string;
   size: string;
+  shortID: string;
+  shortImageID: string;
 }
 
 export interface ContainersUI {

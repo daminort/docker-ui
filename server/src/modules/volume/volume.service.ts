@@ -4,6 +4,9 @@ import { DockerService } from '../../core/docker.service';
 import { StringUtilsService } from '../../core/string-utils.service';
 import { ParseTableOptions } from '../../core/interfaces/string-utils.interface';
 import { VolumeDto } from '../volume/dto/volume.dto';
+import {
+  StringTransformTypes as Transform
+} from '../../common/enum/string-transform-types.enum';
 
 @Injectable()
 export class VolumeService {
@@ -12,6 +15,9 @@ export class VolumeService {
     columns: [
       { name: 'driver', value: 'DRIVER' },
       { name: 'volumeName', value: 'VOLUME NAME' },
+    ],
+    transforms: [
+      { type: Transform.shortID, columnName: 'volumeName', resultName: 'shortName' },
     ],
   };
 
