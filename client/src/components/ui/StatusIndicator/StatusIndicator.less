@@ -1,0 +1,28 @@
+@import '../../../styles/root';
+
+@red: #f44336;
+@orange: #ff9800;
+@yellow: #ffca28;
+@green: #4caf50;
+@cyan: #00bcd4;
+@blue: #2196f3;
+@violet: #673ab7;
+
+.status-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .point {
+    border-radius: 50%;
+    &.running {
+      background-color: @green;
+    }
+    &.exited {
+      background-color: @yellow;
+    }
+    &.error {
+      background-color: @red;
+    }
+  }
+}

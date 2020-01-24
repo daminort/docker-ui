@@ -10,6 +10,9 @@ export const containersActions = {
   listRefresh: (list: ContainerRecord[]) => createAction(ContainersActionTypes.listRefresh, {
     list,
   }),
+  itemSelect: (itemID: string) => createAction(ContainersActionTypes.itemSelect, {
+    itemID,
+  }),
   uiMerge: (ui: ContainersUI) => createAction(ContainersActionTypes.uiMerge, {
     ui,
   }),

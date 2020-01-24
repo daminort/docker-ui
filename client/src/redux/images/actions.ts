@@ -10,6 +10,9 @@ export const imagesActions = {
   listRefresh: (list: ImageRecord[]) => createAction(ImagesActionTypes.listRefresh, {
     list,
   }),
+  itemSelect: (itemID: string) => createAction(ImagesActionTypes.itemSelect, {
+    itemID,
+  }),
   uiMerge: (ui: ImagesUI) => createAction(ImagesActionTypes.uiMerge, {
     ui,
   }),

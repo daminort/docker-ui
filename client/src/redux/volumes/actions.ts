@@ -10,6 +10,9 @@ export const volumesActions = {
   listRefresh: (list: VolumeRecord[]) => createAction(VolumesActionTypes.listRefresh, {
     list,
   }),
+  itemSelect: (itemID: string) => createAction(VolumesActionTypes.itemSelect, {
+    itemID,
+  }),
   uiMerge: (ui: VolumesUI) => createAction(VolumesActionTypes.uiMerge, {
     ui,
   }),

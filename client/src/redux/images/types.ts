@@ -1,6 +1,7 @@
 export enum ImagesActionTypes {
   listReload = '@images/listReload',
   listRefresh = '@images/listRefresh',
+  itemSelect = '@images/itemSelect',
   uiMerge = '@images/uiMerge',
 }
 

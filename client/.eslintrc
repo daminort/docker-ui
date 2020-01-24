@@ -65,6 +65,7 @@
     "func-names":"off",
     "no-param-reassign":"off",
     "object-property-newline":"off",
+    "no-useless-computed-key": "off",
 
     "no-unused-vars":"warn",
     "object-shorthand":"warn",

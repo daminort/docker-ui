@@ -1,6 +1,7 @@
 export enum ContainersActionTypes {
   listReload = '@containers/listReload',
   listRefresh = '@containers/listRefresh',
+  itemSelect = '@containers/itemSelect',
   uiMerge = '@containers/uiMerge',
 }
 
