@@ -1,6 +1,7 @@
 export enum VolumesActionTypes {
   listReload = '@volumes/listReload',
   listRefresh = '@volumes/listRefresh',
+  itemSelect = '@volumes/itemSelect',
   uiMerge = '@volumes/uiMerge',
 }
 

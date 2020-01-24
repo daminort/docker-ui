@@ -12,14 +12,16 @@
     box-shadow: none;
   }
   .rs-list-item-sm {
-    .clip();
     padding: 4px 8px;
     font-size: 0.9rem;
     cursor: pointer;
     max-width: calc(100% - 16px);
 
+    &.selected {
+      background: @list-item-selected-bg;
+    }
     &:hover {
-      background: @list-hover-color;
+      background: @list-item-hover-bg;
     }
   }
 }

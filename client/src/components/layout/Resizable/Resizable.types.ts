@@ -20,7 +20,7 @@ export interface ResizableProps extends ResizableContext {
 
 export const ResizableDefaultProps = {
   type: ResizableTypesEnum.horizontal,
-  defaultSize: 25,
+  defaultSize: 35,
   minSize: 5,
   maxSize: 95,
 };
