@@ -27,7 +27,7 @@
     "@nestjs/swagger": "^4.0.9",
     "@nestjs/websockets": "^6.10.11",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.11.0",
+    "class-validator": "^0.14.0",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.15",
     "nestjs-redoc": "^1.2.0",
